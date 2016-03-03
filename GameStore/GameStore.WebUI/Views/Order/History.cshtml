@@ -1,0 +1,77 @@
+﻿@using GameStore.WebUI.ViewModels.Order
+
+@model OrdersHistoryViewModel
+
+@{
+	ViewBag.Title = Resource.Order_History_OrdersHistory;
+}
+
+<h2>@Resource.Order_History_OrdersHistory</h2>
+
+@using (Html.BeginForm("History", "Order", FormMethod.Get, new { @class = "form-horizontal" }))
+{
+	<!-- Start date -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(model => model.StartDate, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			<input type="date" class="form-control" name="@Html.NameFor(m => m.StartDate)" value="@if (Model.StartDate.HasValue) { @Model.StartDate.Value.ToString("yyyy-MM-dd") }" />
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "help-block" })
+		</div>
+	</div>
+
+	<!-- End date -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(model => model.EndDate, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			<input type="date" class="form-control" name="@Html.NameFor(m => m.EndDate)" value="@if (Model.EndDate.HasValue) { @Model.EndDate.Value.ToString("yyyy-MM-dd") }" />
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(model => model.EndDate, null, new { @class = "help-block" })
+		</div>
+	</div>
+
+	<!-- Submit button -->
+	<div class="form-group">
+		<div class="col-md-4 col-md-offset-4 text-right">
+			<button type="submit" class="btn btn-success">@Resource.Common_Apply</button>
+		</div>
+	</div>
+}
+
+<hr />
+
+<!-- Orders -->
+<div>
+	<table class="col-md-12 table table-hover table-striped">
+		<tbody>
+			@foreach (OrderViewModel order in Model.Orders)
+			{
+				<tr>
+					<td class="col-md-3">
+						<h5>@order.OrderId</h5>
+					</td>
+					<td class="col-md-3">
+						<h5>@order.ShipperName</h5>
+					</td>
+					<td class="col-md-3">
+						<h5>
+							@if (order.OrderDate.HasValue)
+							{
+								@order.OrderDate.Value.ToString("dd-MM-yyyy")
+							}
+						</h5>
+					</td>
+					<td class="col-md-3">
+						<h5>@order.TotalPrice</h5>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PaymentService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:58425/PaymentService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:58425/PaymentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:58425/PaymentService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BankService.DTO.Components" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPaymentService_IsCardExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsCardExists" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentService_IsCardExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsCardExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentService_PayWithVisa_InputMessage">
+    <wsdl:part name="parameters" element="tns:PayWithVisa" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentService_PayWithVisa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PayWithVisaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentService_PayWithMasterCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:PayWithMasterCard" />
+  </wsdl:message>
+  <wsdl:message name="IPaymentService_PayWithMasterCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PayWithMasterCardResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPaymentService">
+    <wsdl:operation name="IsCardExists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaymentService/IsCardExists" message="tns:IPaymentService_IsCardExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaymentService/IsCardExistsResponse" message="tns:IPaymentService_IsCardExists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PayWithVisa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaymentService/PayWithVisa" message="tns:IPaymentService_PayWithVisa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaymentService/PayWithVisaResponse" message="tns:IPaymentService_PayWithVisa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PayWithMasterCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaymentService/PayWithMasterCard" message="tns:IPaymentService_PayWithMasterCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaymentService/PayWithMasterCardResponse" message="tns:IPaymentService_PayWithMasterCard_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IPaymentService" type="tns:IPaymentService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsCardExists">
+      <soap:operation soapAction="http://tempuri.org/IPaymentService/IsCardExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayWithVisa">
+      <soap:operation soapAction="http://tempuri.org/IPaymentService/PayWithVisa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayWithMasterCard">
+      <soap:operation soapAction="http://tempuri.org/IPaymentService/PayWithMasterCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentService">
+    <wsdl:port name="BasicHttpBinding_IPaymentService" binding="tns:BasicHttpBinding_IPaymentService">
+      <soap:address location="http://localhost:58425/PaymentService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

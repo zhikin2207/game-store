@@ -1,0 +1,38 @@
+﻿@using GameStore.BLL.DTOs.Components
+@using GameStore.WebUI.Authentication.Components
+@using GameStore.WebUI.ViewModels.Order
+
+@model IEnumerable<OrderViewModel>
+
+<table class="col-md-12 table table-hover table-striped">
+	<tbody>
+		@foreach (OrderViewModel order in Model)
+		{
+			<tr>
+				<td class="col-md-3">
+					<h5>@order.OrderId</h5>
+				</td>
+				<td class="col-md-3">
+					<h5>@order.ShipperName</h5>
+				</td>
+				<td class="col-md-3">
+					<h5>
+						@if (order.OrderDate.HasValue)
+						{
+							@order.OrderDate.Value.ToString("dd-MM-yyyy")
+						}
+					</h5>
+				</td>
+				<td class="col-md-3">
+					<h5>@order.TotalPrice</h5>
+				</td>
+				<td class="col-md-1">
+					@if (Html.IsUserInRole(UserRole.Manager) && order.Status == OrderDtoStatus.Paid)
+					{
+						<h5><a href="#" data-id="@order.OrderId" class="btn btn-info">@Resource.Order_Orders_Shipped</a></h5>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

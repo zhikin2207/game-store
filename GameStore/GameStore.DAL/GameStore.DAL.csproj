@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4328C0C3-32FB-405A-8C3C-71E9578AD1E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameStore.DAL</RootNamespace>
+    <AssemblyName>GameStore.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Repositories\GameStore\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repositories\GameStore\RoleRepository.cs" />
+    <Compile Include="Repositories\GameStore\UserRepository.cs" />
+    <Compile Include="Repositories\GameStore\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Northwind\Interfaces\IOrderRepository.cs" />
+    <Compile Include="Repositories\Northwind\Interfaces\IProductRepository.cs" />
+    <Compile Include="Repositories\Northwind\Interfaces\IShipperRepository.cs" />
+    <Compile Include="Repositories\Northwind\OrderRepository.cs" />
+    <Compile Include="Repositories\Northwind\ProductRepository.cs" />
+    <Compile Include="Repositories\Northwind\ShipperRepository.cs" />
+    <Compile Include="RepositoryDecorators\Components\GameComparer.cs" />
+    <Compile Include="RepositoryDecorators\Components\GenresComparer.cs" />
+    <Compile Include="RepositoryDecorators\Components\PublishersComparer.cs" />
+    <Compile Include="RepositoryDecorators\GameRepositoryDecorator.cs" />
+    <Compile Include="RepositoryDecorators\OrderRepositoryDecorator.cs" />
+    <Compile Include="RepositoryDecorators\PublisherRepositoryDecorator.cs" />
+    <Compile Include="RepositoryDecorators\GenreRepositoryDecorator.cs" />
+    <Compile Include="Mappings\MappingDalProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GameStore\GenreRepository.cs" />
+    <Compile Include="Repositories\GameStore\CommentRepository.cs" />
+    <Compile Include="Repositories\GameStore\GameRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Northwind\CategoryRepository.cs" />
+    <Compile Include="Repositories\GameStore\HistoryRepository.cs" />
+    <Compile Include="Repositories\GameStore\Interfaces\ICommentRepository.cs" />
+    <Compile Include="Repositories\GameStore\Interfaces\IGameRepository.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Repositories\Interfaces\IGenericRepository.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Repositories\GameStore\Interfaces\IGenreRepository.cs" />
+    <Compile Include="Repositories\GameStore\Interfaces\IOperationHistoryRepository.cs" />
+    <Compile Include="Repositories\GameStore\Interfaces\IOrderRepository.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Repositories\GameStore\Interfaces\IPlatformTypeRepository.cs" />
+    <Compile Include="Repositories\GameStore\Interfaces\IPublisherRepository.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Repositories\GameStore\OrderRepository.cs" />
+    <Compile Include="Repositories\GameStore\PlatformTypeRepository.cs" />
+    <Compile Include="Repositories\GameStore\PublisherRepository.cs" />
+    <Compile Include="Repositories\Northwind\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Northwind\Interfaces\ISuppliearRepository.cs" />
+    <Compile Include="Repositories\Northwind\SupplierRepository.cs" />
+    <Compile Include="UnitsOfWork\Interfaces\IGameStoreUnitOfWork.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="UnitsOfWork\Interfaces\IUnitOfWork.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="UnitsOfWork\GameStoreUnitOfWork.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.Domain\GameStore.Domain.csproj">
+      <Project>{149e917c-a58b-4ea2-b181-aaa8e52763f9}</Project>
+      <Name>GameStore.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

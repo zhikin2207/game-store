@@ -1,0 +1,81 @@
+﻿@using GameStore.WebUI.ViewModels.Order
+
+@model OrdersHistoryViewModel
+
+@{
+	ViewBag.Title = Resource.Common_Orders;
+}
+
+<h2>Orders:</h2>
+
+@using (Html.BeginForm("Orders", "Order", FormMethod.Get, new { @class = "form-horizontal", id = "ordersForm" }))
+{
+	<!-- Start date -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(model => model.StartDate, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			<input type="date" class="form-control" name="@Html.NameFor(m => m.StartDate)" value="@if (Model.StartDate.HasValue) { @Model.StartDate.Value.ToString("yyyy-MM-dd") }" />
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "help-block" })
+		</div>
+	</div>
+
+	<!-- End date -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(model => model.EndDate, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			<input type="date" class="form-control" name="@Html.NameFor(m => m.EndDate)" value="@if (Model.EndDate.HasValue) { @Model.EndDate.Value.ToString("yyyy-MM-dd") }" />
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(model => model.EndDate, null, new { @class = "help-block" })
+		</div>
+	</div>
+
+	<!-- Submit button -->
+	<div class="form-group">
+		<div class="col-md-4 col-md-offset-4 text-right">
+			<button type="submit" class="btn btn-success">@Resource.Common_Apply</button>
+		</div>
+	</div>
+}
+
+<hr />
+
+<!-- Orders -->
+<div id="orders">
+	@Html.Partial("_Orders", Model.Orders)
+</div>
+
+@section scripts {
+	<script>
+		(function() {
+
+			$(function() {
+				var formOriginalData = $("#ordersForm").serializeArray();
+
+				$(document).on('click', 'a[data-id]', function (event) {
+					var id = $(this).data('id');
+
+					$.ajax({
+						type: 'POST',
+						url: '/none/Order/ShipOrder',
+						dataType: 'html',
+						data: {
+							orderID: id,
+							viewModel: formOriginalData
+						}
+					}).success(function (data) {
+						$('#orders').html(data);
+					});
+
+					event.preventDefault();
+				});
+			});
+		})();
+	</script>
+}

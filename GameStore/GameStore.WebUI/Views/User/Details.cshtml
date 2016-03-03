@@ -1,0 +1,78 @@
+﻿@using GameStore.WebUI.Authentication.Components
+@model UserViewModel
+
+@{
+    ViewBag.Title = Resource.Common_User;
+}
+
+<div class="page-header">
+	<h1>
+		@Resource.Common_User:
+		<small>@Html.DisplayFor(model => model.Name)</small>
+
+		@if (Model.IsBanned)
+		{
+			<span class="text-danger">[@Resource.User_Details_Banned]</span>
+		}
+	</h1>
+</div>
+
+<!-- User info -->
+<div>
+	<!-- Email -->
+	<div class="row">
+		<div class="col-md-3">
+			@Html.LabelFor(model => model.Email, new {@class = "control-label text-uppercase"}):
+		</div>
+		<div class="col-md-9">
+			@Html.DisplayFor(model => model.Email)
+		</div>
+	</div>
+
+	<!-- CreatedAt -->
+	<div class="row">
+		<div class="col-md-3">
+			@Html.LabelFor(model => model.CreatedAt, new {@class = "control-label text-uppercase"}):
+		</div>
+		<div class="col-md-9">
+			@Html.DisplayFor(model => model.CreatedAt)
+		</div>
+	</div>
+
+	<!-- Role -->
+	<div class="row">
+		<div class="col-md-3">
+			@Html.LabelFor(model => model.Role.Name, new {@class = "control-label text-uppercase"}):
+		</div>
+		<div class="col-md-9">
+			@Html.DisplayFor(model => model.Role.Name)
+		</div>
+	</div>
+</div>
+
+<!-- User menu -->
+<div>
+	@using (Html.BeginForm("Delete", "User", new { userGuid = Model.UserGuid }, FormMethod.Post))
+	{
+		<button type="submit" class="btn btn-link pull-right">@Resource.Common_Delete</button>
+	}
+
+	@Html.ActionLink(Resource.User_Details_ChangeRole, "ChangeRole", new {controller = "User", userGuid = Model.UserGuid }, new {@class = "btn btn-link pull-right"})
+	
+	@if (Model.Role.Name == UserRole.Publisher.ToString())
+	{
+		@Html.ActionLink(Resource.User_Details_AssignPublisher, "ChangePublisher", new { userGuid = Model.UserGuid }, new { @class = "btn btn-link pull-right" })
+	}
+
+	@if (Model.IsBanned)
+	{
+		using (Html.BeginForm("Unban", "User", new { userGuid = Model.UserGuid }, FormMethod.Post))
+		{
+			<button type = "submit" class="btn btn-link pull-right">@Resource.User_Details_Unban</button>
+		}
+	}
+	else
+	{
+		@Html.ActionLink(Resource.User_Details_Ban, "Ban", new { controller = "User", userGuid = Model.UserGuid }, new { @class = "btn btn-link pull-right" })
+	}
+</div>

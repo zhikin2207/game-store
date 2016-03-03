@@ -1,0 +1,54 @@
+﻿@using GameStore.WebUI.Authentication.Components
+
+@model PublisherViewModel
+
+@{
+    ViewBag.Title = Model.DisplayCompanyName;
+}
+
+<div class="page-header">
+    <h1>
+		@using (Html.BeginForm("AllGames", "Game", FormMethod.Get))
+		{
+			@Html.Hidden("PublisherFilter.PublisherCompanies", Model.CompanyName)
+
+			<span>
+				@Resource.Common_Publisher: 
+				<button type="submit" class="btn btn-link btn-lg">@Html.DisplayFor(m => m.DisplayCompanyName)</button>
+			</span>
+		}
+    </h1>
+</div>
+
+<!-- Description -->
+<div class="row">
+    <div class="col-md-3">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" }):
+    </div>
+    <div class="col-md-9">
+        @Html.DisplayFor(m => m.DisplayDescription)
+    </div>
+</div>
+
+<!-- HomePage -->
+<div class="row">
+	<div class="col-md-3">
+		@Html.LabelFor(m => m.HomePage, new { @class = "control-label" }):
+	</div>
+	<div class="col-md-9">
+		<a href="@Html.DisplayFor(m => m.HomePage)" target="blank">@Html.DisplayFor(m => m.CompanyName)</a>
+	</div>
+</div>
+
+@using (Html.BeginForm("Delete", "Publisher", FormMethod.Post))
+{
+	if (Html.IsUserInRole(UserRole.Manager) || (Html.IsUserInRole(UserRole.Publisher) && Html.IsUserSpecificPublisher(Model.CompanyName)))
+	{
+		@Html.ActionLink(Resource.Common_Edit, "Update", new { company = Model.CompanyName }, new { @class = "btn btn-link pull-right" })
+	}
+	
+	if (Html.IsUserInRole(UserRole.Manager))
+	{
+		<button type="submit" class="btn btn-link pull-right">@Resource.Common_Delete</button>
+	}
+}

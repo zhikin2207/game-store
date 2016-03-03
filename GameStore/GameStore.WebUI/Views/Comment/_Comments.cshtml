@@ -1,0 +1,40 @@
+﻿@using GameStore.WebUI.Authentication.Components
+
+@model IEnumerable<CommentViewModel>
+   
+@foreach (var comment in Model)
+{
+    <div class="comment" data-comment-id="@comment.CommentId" data-user-name="@comment.Name">
+        <h4 class="text-success">
+            @comment.Name <small>@comment.Date</small>
+        </h4>
+	    
+	    <div data-body>
+		    @Html.Raw(comment.Body.Replace(@"[", "\n<blockquote>").Replace(@"]", "</blockquote>\n"))
+	    </div>
+		
+		@if (!Html.IsUserInRole(UserRole.Manager | UserRole.Administrator))
+		{
+			<a href="#" data-answer>[@Resource.Comment_Comments_Answer]</a>
+			<a href="#" class="text-success" data-quote>[@Resource.Comment_Comments_Quote]</a>
+		}
+        
+	    @if (Html.IsUserInRole(UserRole.Moderator))
+        {
+	        if (comment.UserGuid.HasValue)
+	        {
+		        @Html.ActionLink("[" + Resource.Comment_Comments_Ban + "]", "Ban", "User", new { userGuid = comment.UserGuid }, new { @class = "text-danger" })
+	        }
+	        <a href="#" class="text-danger" data-delete>[@Resource.Common_Delete]</a>
+        }
+    </div>
+
+    if (comment.Children.Any())
+    {
+        <ul>
+            <li class="media">
+                @Html.Partial("_Comments", comment.Children)
+            </li>
+        </ul>
+    }
+}

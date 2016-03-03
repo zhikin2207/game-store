@@ -1,0 +1,30 @@
+﻿@model IEnumerable<RoleViewModel>
+
+@{
+    ViewBag.Title = Resource.Common_Roles;
+}
+
+<h2>
+	@Resource.Common_Roles:
+
+    <!-- Create role button -->
+    @Html.ActionLink(Resource.Common_Create, "Create", "Role", null, new { @class = "btn btn-success pull-right" })
+
+</h2>
+
+<!-- Roles -->
+<table class="col-md-12 table table-hover table-striped">
+    <tbody>
+        @foreach (RoleViewModel role in Model)
+        {
+            <tr>
+                <td class="col-md-4">
+                    @Html.ActionLink(role.Name, "Details", new { roleId = role.RoleId })
+                </td>
+                <td class="col-md-4">
+                    <span>@(role.IsSystem ? Resource.Role_Roles_System : Resource.Role_Roles_UserRole)</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

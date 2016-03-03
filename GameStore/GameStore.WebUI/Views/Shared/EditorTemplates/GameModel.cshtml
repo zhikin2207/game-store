@@ -1,0 +1,75 @@
+﻿@using GameStore.BLL.Models;
+
+@model GameModel
+
+<div class="form-group">
+    <div class="col-md-4 text-right">
+        @Html.LabelFor(m => m.Key, new { @class = "control-label" })
+    </div>
+    <div class="col-md-4">
+        @Html.TextBoxFor(m => m.Key, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-4 text-right">
+        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+    </div>
+    <div class="col-md-4">
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-4 text-right">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+    </div>
+    <div class="col-md-4">
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-4 text-right">
+        @Html.LabelFor(m => m.Price, new { @class = "control-label" })
+    </div>
+    <div class="col-md-4">
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-4 text-right">
+        @Html.LabelFor(m => m.UnitsInStock, new { @class = "control-label" })
+    </div>
+    <div class="col-md-4">
+        @Html.TextBoxFor(m => m.UnitsInStock, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="checkbox">
+        <div class="col-md-4 col-md-offset-4">
+            <label>
+                @Html.CheckBoxFor(m => m.Discontinued)
+                @Html.DisplayNameFor(m => m.Discontinued)
+            </label>
+        </div>
+    </div>
+</div>
+

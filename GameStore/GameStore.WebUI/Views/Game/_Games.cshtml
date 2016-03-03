@@ -1,0 +1,21 @@
+﻿@model IEnumerable<GameViewModel>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.Name)</th>
+        <th>@Html.DisplayNameFor(m => m.Description)</th>
+        <th>@Html.DisplayNameFor(m => m.Price)</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (GameViewModel game in Model)
+    {
+        <tr>
+			<td class="col-md-3">@Html.ActionLink(game.DisplayName, "Details", new { key = game.Key })</td>
+			<td class="col-md-8">@Html.DisplayTextFor(m => game.DisplayDescription)</td>
+			<td class="col-md-1">@Html.DisplayTextFor(m => game.Price)</td>
+        </tr>
+    }
+    </tbody>
+</table>

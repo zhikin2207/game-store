@@ -1,0 +1,26 @@
+﻿@model GameStore.WebUI.ViewModels.User.BanUserViewModel
+
+@{
+	ViewBag.Title = Resource.User_Ban_Ban;
+}
+
+<div class="page-header">
+	<h1>@Resource.User_Ban_Ban <small>@Model.User.Name</small></h1>
+</div>
+
+
+@using (Html.BeginForm("Ban", "User", FormMethod.Post))
+{
+	@Html.HiddenFor(model => model.User.UserGuid)
+
+	foreach (SelectListItem item in Model.BanUserDisplayOptions)
+	{
+		<div class="radio">
+			<label>
+				<input type="radio" value="@item.Value" name="SelectedBanOption" />
+				@Html.DisplayTextFor(m => item.Text)
+			</label>
+		</div>
+	}
+	<button type="submit" class="btn btn-danger">@Resource.User_Ban_Ban</button>
+}

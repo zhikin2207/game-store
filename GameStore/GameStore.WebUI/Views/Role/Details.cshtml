@@ -1,0 +1,35 @@
+﻿@model RoleViewModel
+
+@{
+    ViewBag.Title = @Model.Name;
+}
+
+<div class="page-header">
+	<h1>
+		@Resource.Common_Role: <small>@Html.DisplayFor(m => m.Name)</small>
+	</h1>
+</div>
+
+<!-- Role.IsSystem-->
+<div class="row">
+	<div class="col-md-3">
+		@Html.LabelFor(model => model.IsSystem, new { @class = "control-label" })
+	</div>
+	<div class="col-md-9">
+		@Html.DisplayFor(model => model.IsSystem)
+	</div>
+</div>
+
+<div>
+	@if (!Model.IsSystem)
+	{
+		using (Html.BeginForm("Delete", "Role", new { roleId = Model.RoleId }))
+		{
+			@Html.AntiForgeryToken()
+
+			@Html.ActionLink(Resource.Common_Edit, "Update", new { roleId = Model.RoleId }, new { @class = "btn btn-link pull-right" })
+
+			<button type="submit" class="btn btn-link pull-right">@Resource.Common_Delete</button>
+		}
+	}
+</div>

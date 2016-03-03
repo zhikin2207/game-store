@@ -1,0 +1,36 @@
+﻿@model GameStore.WebUI.ViewModels.Order.AllShippersViewModel
+
+@{
+    ViewBag.Title = Resource.Order_Shipper_Shipper;
+}
+
+<div class="page-header">
+	<h1>@Resource.Order_Shipper_Shipper</h1>
+</div>
+
+
+<div class="narrow-form">
+	@using (Html.BeginForm("Shipper", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
+	{
+		@Html.AntiForgeryToken()
+
+		foreach (ShipperViewModel shipper in Model.Shippers)
+		{
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input type="radio" value="@shipper.ShipperId" name="SelectedShipperId"
+							@if (Model.SelectedShipperId == shipper.ShipperId) { <text> checked='checked' </text>  } />
+
+						@Html.DisplayTextFor(m => shipper.CompanyName)
+					</label>
+				</div>
+			</div>
+		}
+
+		<!-- Create button -->
+		<div class="form-group">
+			<button type="submit" class="btn btn-success">@Resource.Common_Select</button>
+		</div>
+	}
+</div>

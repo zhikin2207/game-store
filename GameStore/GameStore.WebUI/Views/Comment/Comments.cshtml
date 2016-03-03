@@ -1,0 +1,161 @@
+﻿@using GameStore.WebUI.Authentication.Components
+
+@model GameStore.WebUI.ViewModels.Comment.GameCommentsViewModel
+
+@{
+	ViewBag.Title = Resource.Common_Comment + " - " + @Model.Game.Name;
+}
+
+<div class="page-header">
+	<h1>
+		@Resource.Common_Comments: <small>@Model.Game.Name</small>
+	</h1>
+</div>
+
+@Html.HiddenFor(m => Model.Game.Key, new { id = "game-key" })
+
+<div id="comments">
+	@Html.Partial("_Comments", Model.Comments.Where(c => c.Parent == null))
+</div>
+
+<hr />
+
+<div>
+	@if (!Model.Game.IsDeleted && !Html.IsUserInRole(UserRole.Manager | UserRole.Administrator) && !Html.IsUserBanned())
+	{
+		using (Ajax.BeginForm("NewComment", new { gameKey = Model.Game.Key }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "comments", OnSuccess = "clearCommentForm", }))
+		{
+			<h3>Your answer: 
+				<span id="recipient" class="text-primary"></span>
+				<small class="text-success">
+					<a href="#" id="reset-recipient" data-toggle="tooltip" data-placement="top" title="Reset form"><span class="glyphicon glyphicon-remove"></span></a>
+				</small>
+			</h3>
+
+			@Html.HiddenFor(m => m.NewComment.ParentCommentId, new { id = "parent-comment-id" })
+
+			<div class="form-group">
+				@Html.TextBox(Html.NameFor(m => m.NewComment.Name).ToString(), User.Identity.Name, new { @class = "form-control", @readonly = "readonly" })
+			</div>
+
+			<div class="form-group">
+				@Html.TextAreaFor(m => m.NewComment.Body, new
+				{
+					@class = "form-control",
+					rows = 3,
+					placeholder = @Html.DisplayNameFor(m => m.NewComment.Body)
+				})
+				@Html.ValidationMessageFor(model => model.NewComment.Body)
+			</div>
+
+			<!-- Create button -->
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">@Resource.Common_Create</button>
+			</div>
+		}
+	}
+</div>
+
+<!-- Delete comment modal -->
+<div class="modal fade" id="delete-comment-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">@Resource.DeleteCommentModal_Title</h4>
+			</div>
+			<div class="modal-body">
+				<p>@Resource.DeleteCommentModal_Body</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-confirm-delete-comment" data-comment-id="-1">@Resource.Common_Yes</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@Resource.Common_No</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+
+	<script>
+		(function() {
+			$(function() {
+
+				function deleteComment(commentId, gameKey) {
+					$.ajax({
+							type: 'POST',
+							url: '/none/Comment/Delete',
+							dataType: 'html',
+							data: {
+								id: commentId,
+								gameKey: gameKey
+							}
+						})
+						.success(function(data) {
+							$('#comments').html(data);
+						});
+				}
+
+				$('[data-toggle="tooltip"]').tooltip();
+
+				//delete comment button click
+				$(document).on('click', 'a[data-delete]', function(event) {
+					var commentId = $(this).closest('div[data-comment-id]').data('comment-id');
+
+					$('#btn-confirm-delete-comment').data('comment-id', commentId);
+					$('#delete-comment-modal').modal('show');
+
+					event.preventDefault();
+				});
+
+				//answer comment button click
+				$(document).on('click', 'a[data-answer]', function(event) {
+					var commentId = $(this).closest('div[data-comment-id]').data('comment-id');
+					var userName = $(this).closest('div[data-user-name]').data('user-name');
+
+					$('#parent-comment-id').val(commentId);
+					$('#recipient').text('for ' + userName);
+					$('#NewComment_Body').val(userName + ', ');
+					$('#NewComment_Body').focus();
+
+					event.preventDefault();
+				});
+
+				//quote comment button click
+				$(document).on('click', 'a[data-quote]', function(event) {
+					var quotation = $(this).siblings('div[data-body]').html();
+
+					quotation = quotation.replace(/<blockquote>/g, '[');
+					quotation = quotation.replace(/<\/blockquote>/g, ']');
+
+					var body = $('#NewComment_Body').val();
+					$('#NewComment_Body').val(body + '\n[' + quotation + ']\n');
+					$('#NewComment_Body').focus();
+
+					event.preventDefault();
+				});
+
+				//confirm delete comment button click
+				$('#btn-confirm-delete-comment').on('click', function() {
+					var gameKey = $('#game-key').val();
+					var commentId = $(this).data('comment-id');
+
+					deleteComment(commentId, gameKey);
+				});
+
+				$('#reset-recipient').on('click', function(event) {
+					clearCommentForm();
+
+					event.preventDefault();
+				});
+			});
+		})();
+
+		function clearCommentForm() {
+			$('#recipient').text('');
+			$('#NewComment_Body').val(null);
+			$('#parent-comment-id').val(null);
+		}
+	</script>
+}

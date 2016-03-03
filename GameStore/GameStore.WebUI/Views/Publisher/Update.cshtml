@@ -1,0 +1,121 @@
+﻿@using GameStore.BLL.DTOs.Components
+
+@model GameStore.WebUI.ViewModels.Publisher.CreateEditPublisherViewModel
+@{
+	ViewBag.Title = Resource.Publisher_Update_UpdatePublisher;
+}
+
+<div class="page-header">
+	<h1>@Resource.Publisher_Update_UpdatePublisher</h1>
+</div>
+
+@using (Html.BeginForm("Update", "Publisher", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	@Html.ValidationSummary(true)
+	@Html.AntiForgeryToken()
+
+	@Html.HiddenFor(m => m.CurrentPublisher.PublisherId)
+	@Html.HiddenFor(m => m.CurrentPublisher.UserGuid)
+	@Html.Hidden("currentCompany", @Model.CurrentPublisher.CompanyName)
+
+	<!-- Company name -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(m => m.CurrentPublisher.CompanyName, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.CurrentPublisher.CompanyName, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.CurrentPublisher.CompanyName, null, new { @class = "help-block" })
+		</div>
+	</div>
+
+	<!-- Description -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(m => m.CurrentPublisher.Description, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.CurrentPublisher.Description, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.CurrentPublisher.Description, null, new { @class = "help-block" })
+		</div>
+	</div>
+
+	<!-- Home page -->
+	<div class="form-group">
+		<div class="col-md-4 text-right">
+			@Html.LabelFor(m => m.CurrentPublisher.HomePage, new { @class = "control-label" })
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.CurrentPublisher.HomePage, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.CurrentPublisher.HomePage, null, new { @class = "help-block" })
+		</div>
+	</div>
+	
+	<!-- Ukrainian localization -->
+	<div class="panel panel-info" data-parent-toggle>
+		<div class="panel-heading">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" data-lang-enable="" @if (Model.UkrainianPublisherLocalization != null) { <text> checked="checked" </text> } />
+					@Html.DisplayNameFor(m => m.UkrainianPublisherLocalization)
+				</label>
+			</div>
+		</div>
+
+		@Html.Hidden(Html.NameFor(m => m.UkrainianPublisherLocalization.Language).ToString(), LanguageDto.Uk, new { data_lang_toggle = true })
+
+		<div class="panel-body">
+			<!-- Publisher ukrainian company name -->
+			<div class="form-group">
+				<div class="col-md-4 text-right">
+					@Html.LabelFor(m => m.UkrainianPublisherLocalization.CompanyName, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(m => m.UkrainianPublisherLocalization.CompanyName, new { @class = "form-control", data_lang_toggle = true })
+				</div>
+				<div class="col-md-4">
+					@Html.ValidationMessageFor(m => m.UkrainianPublisherLocalization.CompanyName, null, new { @class = "help-block" })
+				</div>
+			</div>
+
+			<!-- Publisher ukrainian description -->
+			<div class="form-group">
+				<div class="col-md-4 text-right">
+					@Html.LabelFor(m => m.UkrainianPublisherLocalization.Description, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(m => m.UkrainianPublisherLocalization.Description, new { @class = "form-control", data_lang_toggle = true })
+				</div>
+				<div class="col-md-4">
+					@Html.ValidationMessageFor(m => m.UkrainianPublisherLocalization.Description, null, new { @class = "help-block" })
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Create button -->
+	<div class="form-group">
+		<div class="col-md-4 col-md-offset-4">
+			<button type="submit" class="btn btn-default">@Resource.Common_Edit</button>
+		</div>
+	</div>
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/languageControlPlugin")
+
+	<script>
+		(function () {
+			$(function () {
+				$('input[data-lang-enable]').languageControl();
+			});
+		})();
+	</script>
+}

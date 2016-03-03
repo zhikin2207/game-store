@@ -1,0 +1,72 @@
+﻿@model GameStore.WebUI.ViewModels.Order.OrderViewModel
+
+@{
+    ViewBag.Title = Resource.Common_Order;
+}
+
+<div class="page-header">
+	<h1>
+		@Resource.Common_Order:
+
+		@if (!string.IsNullOrEmpty(Model.ShipperName))
+		{
+			<small>@Model.ShipperName</small>
+		}
+		
+		@Html.ActionLink(Resource.Order_Details_ChangeShipper, "Shipper", "Order", null, new { @class = "btn btn-success pull-right" })
+	</h1>
+</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>@Html.DisplayNameFor(m => Model.OrderDetails.ElementAt(0).Game.Name)</th>
+			<th>@Html.DisplayNameFor(m => Model.OrderDetails.ElementAt(0).Quantity)</th>
+			<th>@Html.DisplayNameFor(m => Model.OrderDetails.ElementAt(0).Price)</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (OrderDetailsViewModel orderDetail in Model.OrderDetails)
+		{
+			<tr>
+				<td>@Html.DisplayTextFor(m => orderDetail.Game.DisplayName)</td>
+				<td>@Html.DisplayTextFor(m => orderDetail.Quantity)</td>
+				<td>@Html.DisplayTextFor(m => orderDetail.Price)</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<hr />
+
+<table class="table table-hover borderless">
+	<tbody>
+		<tr>
+			<td><img width="180" src="~/Content/Images/Payment_Icons/bank.png" /></td>
+			<td>@Resource.Order_Details_BankTitle</td>
+			<td>@Resource.Order_Details_BankDescription</td>
+			<td>
+				@using (Html.BeginForm("PayWithBank", "Order"))
+				{
+					<button type="submit" class="btn btn-primary pull-right">@Resource.Common_Pay</button>
+				}
+			</td>
+		</tr>
+		<tr>
+			<td><img width="180" src="~/Content/Images/Payment_Icons/ibox.png" /></td>
+			<td>@Resource.Order_Details_IBoxTitle</td>
+			<td>@Resource.Order_Details_IBoxDescription</td>
+			<td>
+				@Html.ActionLink(Resource.Common_Pay, "PayWithIBoxTerminal", "Order", null, new { @class = "btn btn-primary pull-right" })
+			</td>
+		</tr>
+		<tr>
+			<td><img width="180" src="~/Content/Images/Payment_Icons/visa.png" /></td>
+			<td>@Resource.Order_Details_VisaTitle</td>
+			<td>@Resource.Order_Details_VisaDescription</td>
+			<td>
+				@Html.ActionLink(Resource.Common_Pay, "PayWithVisa", "Order", null, new { @class = "btn btn-primary pull-right" })
+			</td>
+		</tr>
+	</tbody>
+</table>

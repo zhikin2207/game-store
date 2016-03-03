@@ -1,0 +1,32 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    ViewBag.Title = Resource.Common_Users;
+}
+
+
+<div class="page-header">
+    <h1>@Resource.Common_Users</h1>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Email)</th>
+            <th>@Html.DisplayNameFor(m => m.CreatedAt)</th>
+            <th>@Html.DisplayNameFor(m => m.Role)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserViewModel user in Model)
+        {
+            <tr>
+                <td class="col-md-3">@Html.ActionLink(user.Name, "Details", new { userGuid = user.UserGuid })</td>
+                <td class="col-md-3">@Html.DisplayTextFor(m => user.Email)</td>
+                <td class="col-md-3">@Html.DisplayTextFor(m => user.CreatedAt)</td>
+                <td class="col-md-3">@Html.DisplayTextFor(m => user.Role.Name)</td>
+            </tr>
+        }
+    </tbody>
+</table>

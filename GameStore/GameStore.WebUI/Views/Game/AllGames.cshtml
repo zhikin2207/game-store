@@ -1,0 +1,310 @@
+﻿@using GameStore.WebUI.Authentication.Components
+
+@model GameStore.WebUI.ViewModels.Game.AllGamesViewModel
+
+@{
+    ViewBag.Title = Resource.Common_Games;
+}
+
+<div class="page-header">
+    <h1>
+		@Resource.Common_Games:
+		@if (Html.IsUserInRole(UserRole.Manager))
+		{
+			@Html.ActionLink(Resource.Common_Create, "New", "Game", null, new { @class = "btn btn-success pull-right" })
+		}
+    </h1>
+</div>
+
+<!-- Filters -->
+<div class="col-md-2">
+    @using (Html.BeginForm("AllGames", "Game", FormMethod.Get, new { @class = "form-horizontal", id = "filter-form" }))
+    {
+	    <div class="panel-group">
+		    <!-- Genres filter -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapseGenreFilter">
+					    @Html.DisplayNameFor(m => m.GenreFilter)
+				    </a>
+			    </div>
+			    <div id="collapseGenreFilter" class="panel-collapse collapse in">
+				    <div class="panel-body">
+					    @foreach (GenreViewModel genre in Model.GenreFilter.Genres)
+					    {
+						    <div class="checkbox">
+							    <label>
+								    <input type="checkbox" value="@genre.Name" name="GenreFilter.GenreNames"
+									    @if (Model.GenreFilter.GenreNames.Contains(genre.Name))
+									    {
+										    <text> checked='checked' </text>
+									    }/>
+
+								    @Html.DisplayTextFor(m => genre.DisplayName)
+							    </label>
+						    </div>
+					    }
+				    </div>
+			    </div>
+		    </div>
+
+		    <!-- Platforms filter -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapsePlatformFilter">
+					    @Html.DisplayNameFor(m => m.PlatformFilter)
+				    </a>
+			    </div>
+			    <div id="collapsePlatformFilter" class="panel-collapse collapse collapse">
+				    <div class="panel-body">
+					    @foreach (PlatformTypeViewModel platform in Model.PlatformFilter.PlatformTypes)
+					    {
+						    <div class="checkbox">
+							    <label>
+								    <input type="checkbox" value="@platform.Type" name="PlatformFilter.SelectedPlatformTypes"
+									    @if (Model.PlatformFilter.SelectedPlatformTypes.Contains(platform.Type))
+									    {
+										    <text> checked='checked' </text>
+									    }/>
+
+								    @Html.DisplayTextFor(m => platform.DisplayType)
+							    </label>
+						    </div>
+					    }
+				    </div>
+			    </div>
+		    </div>
+
+		    <!-- Publisher filter -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapsePublisherFilter">
+					    @Html.DisplayNameFor(m => m.PublisherFilter)
+				    </a>
+			    </div>
+			    <div id="collapsePublisherFilter" class="panel-collapse collapse collapse">
+				    <div class="panel-body">
+					    @foreach (PublisherViewModel publisher in Model.PublisherFilter.Publishers)
+					    {
+						    <div class="checkbox">
+							    <label>
+								    <input type="checkbox" value="@publisher.CompanyName" name="PublisherFilter.PublisherCompanies"
+									    @if (Model.PublisherFilter.PublisherCompanies.Contains(publisher.CompanyName))
+									    {
+										    <text> checked='checked' </text>
+									    }/>
+
+								    @Html.DisplayTextFor(m => publisher.DisplayCompanyName)
+							    </label>
+						    </div>
+					    }
+				    </div>
+			    </div>
+		    </div>
+
+		    <!-- Game name filter -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapseNameFilter">
+					    @Html.DisplayNameFor(m => m.NameFilter)
+				    </a>
+			    </div>
+			    <div id="collapseNameFilter" class="panel-collapse collapse collapse">
+				    <div class="panel-body">
+					    <div>
+						    @Html.LabelFor(m => m.NameFilter.Name, new { @class = "control-label" })
+					    </div>
+					    <div>
+						    @Html.TextBoxFor(m => m.NameFilter.Name, new { @class = "form-control" })
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+
+		    <!-- Sorting -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapseSorting">
+					    @Html.DisplayNameFor(m => m.Sorting)
+				    </a>
+			    </div>
+			    <div id="collapseSorting" class="panel-collapse collapse collapse">
+				    <div class="panel-body">
+					    <div>
+						    @Html.LabelFor(m => m.Sorting.SelectedSortOption, new { @class = "control-label" })
+					    </div>
+					    <div>
+						    @Html.DropDownListFor(m => m.Sorting.SelectedSortOption, Model.Sorting.SortDisplayOptions, new { @class = "form-control" })
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+
+		    <!-- Price filter -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapsePriceFilter">
+					    @Html.DisplayNameFor(m => m.PriceFilter)
+				    </a>
+			    </div>
+			    <div id="collapsePriceFilter" class="panel-collapse collapse collapse">
+				    <div class="panel-body">
+					    <div>
+						    @Html.LabelFor(m => m.PriceFilter.MinPrice, new { @class = "control-label" })
+					    </div>
+					    <div>
+						    @Html.TextBoxFor(m => m.PriceFilter.MinPrice, new { @class = "form-control" })
+					    </div>
+					    <div>
+						    @Html.LabelFor(m => m.PriceFilter.MaxPrice, new { @class = "control-label" })
+					    </div>
+					    <div>
+						    @Html.TextBoxFor(m => m.PriceFilter.MaxPrice, new { @class = "form-control" })
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+
+		    <!-- Date filter -->
+		    <div class="form-group panel panel-default">
+			    <div class="panel-heading">
+				    <a data-toggle="collapse" href="#collapseDateFilter">
+					    @Html.DisplayNameFor(m => m.DateFilter)
+				    </a>
+			    </div>
+			    <div id="collapseDateFilter" class="panel-collapse collapse collapse">
+				    <div class="panel-body">
+					    @foreach (SelectListItem item in Model.DateFilter.DateFilterOptions)
+					    {
+						    <div class="radio">
+							    <label>
+								    <input type="radio" value="@item.Value" name="DateFilter.SelectedDateOption"
+									    @if (item.Value == Model.DateFilter.SelectedDateOption.ToString())
+									    {
+										    <text> checked='checked' </text>
+									    }/>
+
+
+
+								    @Html.DisplayTextFor(m => item.Text)
+							    </label>
+						    </div>
+					    }
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+
+	    @Html.HiddenFor(m => m.Paging.CurrentPage, new { id = "CurrentPage" })
+	    @Html.HiddenFor(m => m.Paging.ItemsPerPage, new { id = "ItemsPerPage" })
+
+	    <div class="form-group">
+		    <button type="submit" class="btn btn-success btn-group-justified" id="btn-apply-filters">@Resource.Common_Apply</button>
+	    </div>
+		
+		 <div class="form-group">
+		    @Html.ActionLink(@Resource.Game_AllGames_ClearFilter, "AllGames", "Game", new { @class = "btn btn-primary btn-group-justified" })
+	    </div>
+    }
+</div>
+
+<div class="col-md-10">
+    <!-- Games list -->
+    <div id="game-list">
+        @Html.Partial("_Games", Model.Games)
+    </div>
+
+    <!-- Items per page -->
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Paging.ItemPerPageOptions, new {@class = "control-label"}):
+            </div>
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.Paging.ItemsPerPage, Model.Paging.ItemPerPageOptions, new {@class = "form-control", id = "ddl-items-per-page"})
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <ul class="pagination">
+            <li @if (!Model.Paging.CanGoPrev)
+                {
+                    <text> class="disabled" </text>
+                }>
+                <a href="#" aria-label="Previous" data-page="@(Model.Paging.CurrentPage - 1)">
+                    <span aria-hidden="true">
+                    &laquo;
+                </span>
+                </a>
+            </li>
+
+            @for (int page = Model.Paging.LeftDisplayedPagesCount; page >= 1; page--)
+            {
+                if (Model.Paging.CurrentPage - page >= 1)
+                {
+                    <li><a href="#" data-page="@(Model.Paging.CurrentPage - page)">@(Model.Paging.CurrentPage - page)</a></li>
+                }
+            }
+
+            <li class="active"><a href="#" data-page="@Model.Paging.CurrentPage">@Model.Paging.CurrentPage</a></li>
+
+            @for (int page = 1; page <= Model.Paging.RightDisplayedPagesCount; page++)
+            {
+                if (Model.Paging.CurrentPage + page <= Model.Paging.PagesCount)
+                {
+                    <li><a href="#" data-page="@(Model.Paging.CurrentPage + page)">@(Model.Paging.CurrentPage + page)</a></li>
+                }
+            }
+
+            <li @if (!Model.Paging.CanGoNext)
+                {
+                    <text> class="disabled" </text>
+                }>
+                <a href="#" aria-label="Next" data-page="@(Model.Paging.CurrentPage + 1)">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        (function () {
+            var formOriginalData = $("#filter-form").serialize();
+
+            $(function () {
+                $('a[data-page]').click(function (event) {
+                    if ($(this).parent().hasClass('disabled')) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    var page = $(this).data('page');
+                    $('#CurrentPage').val(page);
+
+                    $('#filter-form').submit();
+                });
+            });
+
+            $('#btn-apply-filters').click(function () {
+                if ($("#filter-form").serialize() === formOriginalData) {
+                    event.preventDefault();
+                    return;
+                }
+
+                $('#CurrentPage').val(1);
+                $('#filtersForm').submit();
+            });
+
+            $('#ddl-items-per-page').change(function () {
+                $('#ItemsPerPage').val($(this).val());
+                $('#CurrentPage').val(1);
+                $('#filter-form').submit();
+            });
+        }());
+    </script>
+}

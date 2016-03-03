@@ -1,0 +1,35 @@
+﻿@model GameStore.WebUI.ViewModels.Account.RegisterViewModel
+
+@{
+    ViewBag.Title = Resource.Account_Register_Register;
+}
+
+@using (Html.BeginForm("Register", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "narrow-form" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	<h2>@Resource.Account_Register_Register</h2>
+	
+	@Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name) })
+	@Html.ValidationMessageFor(m => m.Name)
+	<br />
+	
+	@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Email) })
+	@Html.ValidationMessageFor(m => m.Email)
+	<br />
+
+	@Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Password) })
+	@Html.ValidationMessageFor(m => m.Password)
+	<br />
+	
+	@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.ConfirmPassword) })
+	@Html.ValidationMessageFor(m => m.ConfirmPassword)
+	<br />
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit">@Resource.Account_Register_Register</button>
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

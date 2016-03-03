@@ -1,0 +1,94 @@
+﻿@using GameStore.WebUI.Authentication.Components
+@using GameStore.WebUI.Components
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>@Resource.Shared_Layout_GameStore · @ViewBag.Title</title>
+
+		@Styles.Render("~/content/bootstrap")
+		@Styles.Render("~/content/css")
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<!-- Navigation bar items -->
+				<div class="collapse navbar-collapse">
+
+					<!-- Menu items-->
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="@Url.Action("AllGames", "Game")">
+								@Resource.Shared_Layout_GameStore 
+								<span class="badge">80@*@Html.Action("GamesNumber", "Game")*@</span>
+							</a>
+						</li>
+						<li>@Html.ActionLink(Resource.Common_Publishers, "Publishers", "Publisher")</li>
+						<li>@Html.ActionLink(Resource.Common_Genres, "Genres", "Genre")</li>
+
+						@if (Html.IsUserInRole(UserRole.Administrator))
+						{
+							<li>@Html.ActionLink(Resource.Common_Users, "Users", "User")</li>
+							<li>@Html.ActionLink(Resource.Common_Roles, "Roles", "Role")</li>
+						}
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							@using (Html.BeginForm("ChangeLanguage", "Account", new { lang = Language.English }, FormMethod.Get))
+							{
+								<button type="submit" class="navbar-brand btn-link btn"><img src="~/Content/Images/Flags/us.svg" width="32" height="24" /></button>
+							}
+						</li>
+						<li>
+							@using (Html.BeginForm("ChangeLanguage", "Account", new { lang = Language.Ukrainian }, FormMethod.Get))
+							{
+								<button type="submit" class="navbar-brand btn-link btn"><img src="~/Content/Images/Flags/ua.svg" width="32" height="24" /></button>
+							}
+						</li>
+
+						@if (Html.IsUserInRole(UserRole.Manager | UserRole.User))
+						{
+							<li>@Html.ActionLink(Resource.Shared_Layout_OrdersHistory, "History", "Order")</li>
+						}
+
+						@if (Html.IsUserInRole(UserRole.Manager))
+						{
+							<li>@Html.ActionLink(Resource.Common_Orders, "Orders", "Order")</li>
+						}
+
+						@if (Html.IsUserInRole(UserRole.User | UserRole.Guest))
+						{
+							<li>@Html.ActionLink(Resource.Common_Basket, "Basket", "Order")</li>
+						}
+
+						@if (Request.IsAuthenticated)
+						{
+							<li><p class="navbar-text user-name">@User.Identity.Name</p></li>
+							<li>
+								@using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
+								{
+									<button type="submit" class="btn btn-link">@Resource.Shared_Layout_Logout</button>
+								}
+							</li>
+						}
+						else
+						{
+							<li>@Html.ActionLink(Resource.Shared_Layout_Login, "Login", "Account")</li>
+							<li>@Html.ActionLink(Resource.Shared_Layout_Register, "Register", "Account")</li>
+						}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			@RenderBody()
+		</div>
+
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@RenderSection("scripts", false)
+	</body>
+</html>

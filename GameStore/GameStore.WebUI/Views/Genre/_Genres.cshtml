@@ -1,0 +1,24 @@
+﻿@using GameStore.WebUI.Authentication.Components
+
+@model IEnumerable<GenreViewModel>
+
+@foreach (var genre in Model)
+{
+	<div class="alert alert-success" role="alert">
+		<h4>@Html.ActionLink(genre.DisplayName, "Details", new { name = genre.Name})</h4>
+		
+		@if (Html.IsUserInRole(UserRole.Manager))
+		{
+			@Html.ActionLink("[" + Resource.Genre_Genres_AddSubgenre + "]", "Create", new { parentGenre = @genre.Name })
+		}
+	</div>
+
+	if (genre.Children.Any())
+	{
+		<ul>
+			<li class="media">
+				@Html.Partial("_Genres", genre.Children)
+			</li>
+		</ul>
+	}
+}

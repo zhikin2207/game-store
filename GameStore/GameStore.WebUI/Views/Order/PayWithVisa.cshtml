@@ -1,0 +1,95 @@
+﻿@model GameStore.WebUI.ViewModels.Order.VisaPaymentViewModel
+
+@{
+    ViewBag.Title = Resource.Order_PayWithVisa_Visa;
+}
+
+
+<div class="page-header">
+	<h1>@Resource.Order_PayWithVisa_Visa</h1>
+</div>
+
+@using (Html.BeginForm("PayWithVisa", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	@Html.ValidationSummary(true)
+	
+	<div class="form-group">
+		<div class="col-md-4">
+			@Html.LabelFor(m => m.CardHolderName)
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.CardHolderName, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.CardHolderName)
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-4">
+			@Html.LabelFor(m => m.CardNumber)
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.CardNumber, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.CardNumber)
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-4">
+			@Html.LabelFor(m => m.CVV2)
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.CVV2, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.CVV2)
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-4">
+			@Html.LabelFor(m => m.ExpirationMonth)
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.ExpirationMonth, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.ExpirationMonth)
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-4">
+			@Html.LabelFor(m => m.ExpirationYear)
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.ExpirationYear, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.ExpirationYear)
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-4">
+			@Html.LabelFor(m => m.Phone)
+		</div>
+		<div class="col-md-4">
+			@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+		</div>
+		<div class="col-md-4">
+			@Html.ValidationMessageFor(m => m.Phone)
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary">@Resource.Common_Pay</button>
+	</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

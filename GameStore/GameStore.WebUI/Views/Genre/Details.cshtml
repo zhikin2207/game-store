@@ -1,0 +1,32 @@
+﻿@using GameStore.WebUI.Authentication.Components
+
+@model GenreViewModel
+
+@{
+	ViewBag.Title = @Model.Name;
+}
+
+<div class="page-header">
+	<h1>
+		@using (Html.BeginForm("AllGames", "Game", FormMethod.Get))
+		{
+			@Html.Hidden("GenreFilter.GenreNames", Model.Name)
+
+			<span>
+				@Resource.Common_Genre:
+				<button type="submit" class="btn btn-link btn-lg">@Html.DisplayFor(m => m.DisplayName)</button>
+			</span>
+		}
+	</h1>
+</div>
+
+@if (!Model.IsReadOnly && @Html.IsUserInRole(UserRole.Manager))
+{
+	using (Html.BeginForm("Delete", "Genre", new { name = Model.Name }))
+	{
+		@Html.AntiForgeryToken()
+
+		@Html.ActionLink(Resource.Common_Edit, "Update", new { name = Model.Name }, new { @class = "btn btn-link pull-right" })
+		<button type="submit" class="btn btn-link pull-right">@Resource.Common_Delete</button>
+	}
+}

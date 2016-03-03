@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Common_Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Shared_Layout_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Shared_Layout_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Common_Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="Shared_Layout_OrdersHistory" xml:space="preserve">
+    <value>Orders history</value>
+  </data>
+  <data name="Shared_Layout_GameStore" xml:space="preserve">
+    <value>Game store</value>
+  </data>
+  <data name="Shared_Layout_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Game_New_NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="Common_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="GameViewModel_Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="GameViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="GameViewModel_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="GameViewModel_Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="GameViewModel_UnitsInStock" xml:space="preserve">
+    <value>Units in stock</value>
+  </data>
+  <data name="GameViewModel_DatePublished" xml:space="preserve">
+    <value>Date published</value>
+  </data>
+  <data name="GameViewModel_Discontinued" xml:space="preserve">
+    <value>Discontinued</value>
+  </data>
+  <data name="GameViewModelBuilder_UnknownPublisher" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="GameViewModelBuilder_OtherGenre" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="AllGamesViewModel_Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Common_Genres" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="Common_Publishers" xml:space="preserve">
+    <value>Publishers</value>
+  </data>
+  <data name="Common_Platforms" xml:space="preserve">
+    <value>Platforms</value>
+  </data>
+  <data name="AllGamesViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AllGamesViewModel_Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="AllGamesViewModel_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Game_AllGames_ClearFilter" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Game_AllGames_ApplyFilter" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="PagingViewModel_ItemsPerPage" xml:space="preserve">
+    <value>Items per page</value>
+  </data>
+  <data name="Common_Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="PublisherViewModel_CompanyName" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="PublisherViewModel_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PublisherViewModel_HomePage" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Common_Platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="OrderDetailsViewModel_Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="OrderDetailsViewModel_Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="OrderDetailsViewModel_Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="GenreViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CommentViewModel_Body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="CommentViewModel_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RegisterViewModel_Name" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="RegisterViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="RegisterViewModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="RegisterViewModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="LoginViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LoginViewModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LoginViewModel_RememberMe" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="Common_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Common_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="UserViewModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserViewModel_Name" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="UserViewModel_CreatedAt" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Common_Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Common_User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Common_Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="Common_Genre" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="Common_Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="ShipperViewModel_CompanyName" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="ShipperViewModel_Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="DateFilterOption_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="DateFilterOption_Week" xml:space="preserve">
+    <value>One week</value>
+  </data>
+  <data name="DateFilterOption_Month" xml:space="preserve">
+    <value>One month</value>
+  </data>
+  <data name="DateFilterOption_Year" xml:space="preserve">
+    <value>One year</value>
+  </data>
+  <data name="DateFilterOption_2Years" xml:space="preserve">
+    <value>Two years</value>
+  </data>
+  <data name="DateFilterOption_3Years" xml:space="preserve">
+    <value>Three years</value>
+  </data>
+  <data name="NameFilter_GameTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SortDisplayOption_MostViewed" xml:space="preserve">
+    <value>Most viewed</value>
+  </data>
+  <data name="SortDisplayOption_MostCommented" xml:space="preserve">
+    <value>Most commented</value>
+  </data>
+  <data name="SortDisplayOption_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="SortDisplayOption_PriceAsc" xml:space="preserve">
+    <value>Price asc</value>
+  </data>
+  <data name="SortDisplayOption_PriceDesc" xml:space="preserve">
+    <value>Price desc</value>
+  </data>
+  <data name="GameSortingViewModel_Sort" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
+  <data name="GamesByPriceFilterViewModel_Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="GamesByPriceFilterViewModel_Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="ItemsPerPageDisplayItem_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Account_Login_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Account_Register_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Common_Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Common_Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="DeleteCommentModal_Title" xml:space="preserve">
+    <value>Delete comment</value>
+  </data>
+  <data name="DeleteCommentModal_Body" xml:space="preserve">
+    <value>Do you really want to delete this comment?</value>
+  </data>
+  <data name="Common_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Common_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Comment_Comments_Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
+  <data name="Comment_Comments_Quote" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="Comment_Comments_Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="Game_AllGames_Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="Game_AllGames_Buy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="Game_AllGames_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="BasketConfirmationDialog_Title" xml:space="preserve">
+    <value>Place game to basket</value>
+  </data>
+  <data name="Genre_Create_NewGenre" xml:space="preserve">
+    <value>New genre</value>
+  </data>
+  <data name="CreateGenreViewModel_ParentGenre" xml:space="preserve">
+    <value>Parent genre</value>
+  </data>
+  <data name="Languages_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Languages_Ukrainian" xml:space="preserve">
+    <value>Ukrainian</value>
+  </data>
+  <data name="Genre_Update_UpdateGenre" xml:space="preserve">
+    <value>Update genre</value>
+  </data>
+  <data name="UpdateGenreViewModel_ParentGenre" xml:space="preserve">
+    <value>Parent genre</value>
+  </data>
+  <data name="Genre_Genres_AddSubgenre" xml:space="preserve">
+    <value>Add subgenre</value>
+  </data>
+  <data name="Game_Update_UpdateGame" xml:space="preserve">
+    <value>Update game</value>
+  </data>
+  <data name="Publisher_New_NewPublisher" xml:space="preserve">
+    <value>New publisher</value>
+  </data>
+  <data name="Publisher_Update_UpdatePublisher" xml:space="preserve">
+    <value>Update publisher</value>
+  </data>
+  <data name="User_Details_Ban" xml:space="preserve">
+    <value>Ban user</value>
+  </data>
+  <data name="User_Details_ChangeRole" xml:space="preserve">
+    <value>Change role</value>
+  </data>
+  <data name="User_Details_Banned" xml:space="preserve">
+    <value>Banned</value>
+  </data>
+  <data name="User_Details_Unban" xml:space="preserve">
+    <value>Unban</value>
+  </data>
+  <data name="Role_Update_UpdateRole" xml:space="preserve">
+    <value>Update role</value>
+  </data>
+  <data name="Role_Roles_System" xml:space="preserve">
+    <value>System role</value>
+  </data>
+  <data name="Role_Roles_UserRole" xml:space="preserve">
+    <value>User defined role</value>
+  </data>
+  <data name="Role_New_CreateRole" xml:space="preserve">
+    <value>Create role</value>
+  </data>
+  <data name="User_ChangeRole_ChangeRole" xml:space="preserve">
+    <value>Change role</value>
+  </data>
+  <data name="User_Ban_Ban" xml:space="preserve">
+    <value>Ban user</value>
+  </data>
+  <data name="Order_Basket_MakeOrder" xml:space="preserve">
+    <value>Make order</value>
+  </data>
+  <data name="Common_Basket" xml:space="preserve">
+    <value>Basket</value>
+  </data>
+  <data name="Common_Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Order_Details_ChangeShipper" xml:space="preserve">
+    <value>Change shipper</value>
+  </data>
+  <data name="Order_Details_BankTitle" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="Order_Details_IBoxTitle" xml:space="preserve">
+    <value>IBox terminal</value>
+  </data>
+  <data name="Order_Details_VisaTitle" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="Order_Details_BankDescription" xml:space="preserve">
+    <value>Axis Bank offers internet banking services, personal banking services including accounts, cards, loans, investment options to personals, corporates and NRIs.</value>
+  </data>
+  <data name="Order_Details_IBoxDescription" xml:space="preserve">
+    <value>Paying via iBox you save time to visit bank branch and receive the opportunity to make payments on a round-the-clock basis.</value>
+  </data>
+  <data name="Order_Details_VisaDescription" xml:space="preserve">
+    <value>As a premier payments technology company, Visa’s global network connects thousands of financial institutions with millions of merchants and cardholders every day.</value>
+  </data>
+  <data name="Order_History_OrdersHistory" xml:space="preserve">
+    <value>Orders history</value>
+  </data>
+  <data name="Order_History_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Common_Apply" xml:space="preserve">
+    <value>Apply filter</value>
+  </data>
+  <data name="Order_Shipper_Shipper" xml:space="preserve">
+    <value>Shipper</value>
+  </data>
+  <data name="Common_Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Order_PayWithVisa_Visa" xml:space="preserve">
+    <value>VISA</value>
+  </data>
+  <data name="Common_Pay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="Order_PayWithIBox_IBox" xml:space="preserve">
+    <value>IBox terminal</value>
+  </data>
+  <data name="Order_Orders_Shipped" xml:space="preserve">
+    <value>Shipped</value>
+  </data>
+  <data name="VisaPaymentViewModel_CardHolder" xml:space="preserve">
+    <value>Card holders name</value>
+  </data>
+  <data name="VisaPaymentViewModel_CardNumber" xml:space="preserve">
+    <value>Card number</value>
+  </data>
+  <data name="VisaPaymentViewModel_CardMonth" xml:space="preserve">
+    <value>Expiration month</value>
+  </data>
+  <data name="VisaPaymentViewModel_CVV2" xml:space="preserve">
+    <value>CVV2</value>
+  </data>
+  <data name="OrdersHistoryViewModel_StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="OrdersHistoryViewModel_EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="IBoxTerminalPaymentViewModel_Invoice" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
+  <data name="IBoxTerminalPaymentViewModel_Guid" xml:space="preserve">
+    <value>Guid</value>
+  </data>
+  <data name="IBoxTerminalPaymentViewModel_Sum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
+  <data name="BanUserDisplayOption_Hour" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="BanUserDisplayOption_Day" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="BanUserDisplayOption_Week" xml:space="preserve">
+    <value>1 week</value>
+  </data>
+  <data name="BanUserDisplayOption_Month" xml:space="preserve">
+    <value>1 month</value>
+  </data>
+  <data name="BanUserDisplayOption_Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="User_Details_AssignPublisher" xml:space="preserve">
+    <value>Assign publisher</value>
+  </data>
+  <data name="VisaPaymentViewModel_CardYear" xml:space="preserve">
+    <value>Expiration year</value>
+  </data>
+  <data name="VisaPaymentViewModel_Email" xml:space="preserve">
+    <value>Email </value>
+  </data>
+  <data name="VisaPaymentViewModel_Phone" xml:space="preserve">
+    <value>Phone </value>
+  </data>
+</root>
